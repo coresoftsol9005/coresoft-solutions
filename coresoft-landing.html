@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CoreSoft Solutions — AI & Digital Growth for Local Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ── ROOT TOKENS ── */
+:root {
+  --navy:       #0D47A1;
+  --navy-dk:    #0A1628;
+  --navy-mid:   #1565C0;
+  --green:      #00E676;
+  --green-glow: rgba(0,230,118,0.18);
+  --green-dk:   #00C853;
+  --red:        #E53935;
+  --red-dk:     #B71C1C;
+  --light-blue: #90CAF9;
+  --white:      #FFFFFF;
+  --off-white:  #F7F9FC;
+  --text-dim:   rgba(255,255,255,0.55);
+  --text-mid:   rgba(255,255,255,0.80);
+  --border:     rgba(144,202,249,0.15);
+  --card-bg:    rgba(13,71,161,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy-dk);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 60px;
+  background: rgba(10,22,40,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 14px;
+}
+.nav-logo svg { height: 36px; width: auto; }
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+.nav-logo-text span { color: var(--red); }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-dim);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--green); color: var(--navy-dk) !important;
+  padding: 10px 22px; border-radius: 6px;
+  font-weight: 700 !important; letter-spacing: 0.5px !important;
+  transition: background 0.2s, box-shadow 0.2s !important;
+}
+.nav-cta:hover {
+  background: var(--green-dk) !important;
+  box-shadow: 0 0 24px var(--green-glow) !important;
+  color: var(--navy-dk) !important;
+}
+
+/* ── SECTION WRAPPER ── */
+section { position: relative; z-index: 1; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 140px 0 100px;
+  position: relative; overflow: hidden;
+}
+/* Animated background grid */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(21,101,192,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21,101,192,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%,100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+/* Radial glow blobs */
+.hero-glow-1 {
+  position: absolute; top: -100px; right: -80px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(13,71,161,0.35) 0%, transparent 70%);
+  animation: blobFloat 12s ease-in-out infinite;
+}
+.hero-glow-2 {
+  position: absolute; bottom: -150px; left: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,57,53,0.12) 0%, transparent 70%);
+  animation: blobFloat 16s ease-in-out infinite reverse;
+}
+.hero-glow-3 {
+  position: absolute; top: 40%; right: 15%;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 70%);
+  animation: blobFloat 10s ease-in-out infinite 3s;
+}
+@keyframes blobFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.5); }
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+.hero h1 .accent-red   { color: var(--red); }
+.hero h1 .accent-green { color: var(--green); }
+
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: var(--text-mid);
+  line-height: 1.7; max-width: 480px;
+  margin-bottom: 40px;
+}
+
+.hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--green); color: var(--navy-dk);
+  font-size: 15px; font-weight: 700; padding: 16px 32px;
+  border-radius: 8px; text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 4px 30px rgba(0,230,118,0.25);
+}
+.btn-primary:hover {
+  background: var(--green-dk);
+  box-shadow: 0 6px 40px rgba(0,230,118,0.4);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--light-blue); font-size: 15px; font-weight: 500;
+  text-decoration: none; border-bottom: 1px solid rgba(144,202,249,0.4);
+  padding-bottom: 2px; transition: all 0.2s;
+}
+.btn-secondary:hover { color: var(--white); border-color: var(--white); }
+
+.hero-stat-bar {
+  display: flex; gap: 32px; margin-top: 52px;
+  padding-top: 32px; border-top: 1px solid var(--border);
+}
+.hero-stat strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 28px; font-weight: 800;
+  color: var(--green);
+}
+.hero-stat span {
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-dim); font-weight: 500;
+}
+
+/* Signal Node Illustration */
+.hero-visual {
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+.signal-node-anim {
+  width: 100%; max-width: 440px;
+  animation: floatVis 6s ease-in-out infinite;
+}
+@keyframes floatVis {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,71,161,0.06);
+}
+.trust-bar-inner {
+  display: flex; align-items: center; gap: 48px;
+  flex-wrap: wrap; justify-content: center;
+}
+.trust-label {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-dim); white-space: nowrap;
+}
+.trust-items {
+  display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+}
+.trust-item {
+  font-size: 13px; font-weight: 500; color: var(--text-mid);
+  display: flex; align-items: center; gap: 8px;
+}
+.trust-item .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+}
+
+/* ── SECTION DEFAULTS ── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--green); margin-bottom: 20px;
+}
+.section-tag::before {
+  content: ''; width: 20px; height: 1px; background: var(--green);
+}
+h2.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800; letter-spacing: -1.5px;
+  line-height: 1.1; margin-bottom: 16px;
+}
+.section-desc {
+  font-size: 17px; color: var(--text-mid);
+  max-width: 560px; line-height: 1.7;
+}
+
+/* ── PROBLEM SECTION ── */
+.problem { padding: 110px 0; }
+.problem-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 64px;
+}
+.problem-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.problem-card:hover {
+  border-color: rgba(229,57,53,0.5);
+  transform: translateY(-4px);
+}
+.problem-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--red);
+}
+.problem-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 64px; font-weight: 800;
+  color: rgba(229,57,53,0.12); line-height: 1;
+  margin-bottom: -10px;
+}
+.problem-icon {
+  font-size: 28px; margin-bottom: 16px;
+}
+.problem-card h3 {
+  font-size: 20px; font-weight: 700; margin-bottom: 12px;
+  color: var(--white);
+}
+.problem-card p {
+  font-size: 14px; color: var(--text-mid); line-height: 1.7;
+}
+.problem-tag {
+  display: inline-block; margin-top: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--red);
+  background: rgba(229,57,53,0.10);
+  padding: 4px 12px; border-radius: 20px;
+}
+
+/* ── SOLUTION SECTION ── */
+.solution {
+  padding: 110px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(13,71,161,0.08) 50%, transparent 100%);
+}
+.solution-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; margin-bottom: 80px;
+}
+.solution-visual { position: relative; }
+.solution-node-diagram {
+  width: 100%; border-radius: 16px; overflow: hidden;
+}
+.solution-list { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+.solution-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px; border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  transition: border-color 0.3s;
+}
+.solution-item:hover { border-color: rgba(0,230,118,0.3); }
+.solution-item-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(0,230,118,0.10);
+  border: 1px solid rgba(0,230,118,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.solution-item-text h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.solution-item-text p  { font-size: 13px; color: var(--text-mid); }
+
+/* ── SERVICES 3-COL ── */
+.services { padding: 110px 0; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; margin-top: 64px;
+}
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px 32px;
+  position: relative; overflow: hidden;
+  transition: all 0.35s;
+  display: flex; flex-direction: column;
+}
+.service-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--navy-mid));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s;
+}
+.service-card:hover { border-color: rgba(0,230,118,0.3); transform: translateY(-6px); }
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-card-icon {
+  width: 60px; height: 60px; border-radius: 14px;
+  background: rgba(13,71,161,0.3);
+  border: 1px solid rgba(144,202,249,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin-bottom: 28px;
+}
+.service-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+  margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.service-card .tagline {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green); font-weight: 700; margin-bottom: 16px;
+}
+.service-card p {
+  font-size: 14px; color: var(--text-mid); line-height: 1.75;
+  flex: 1;
+}
+.service-features {
+  margin-top: 28px; display: flex; flex-direction: column; gap: 10px;
+}
+.service-feature {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text-mid);
+}
+.service-feature::before {
+  content: '';
+  width: 16px; height: 16px; border-radius: 50%;
+  background: rgba(0,230,118,0.12);
+  border: 1px solid rgba(0,230,118,0.4);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%2300E676' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+}
+
+/* ── SOCIAL PROOF ── */
+.proof { padding: 110px 0; }
+.proof-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; margin-top: 64px;
+}
+.proof-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+  transition: transform 0.3s;
+}
+.proof-card:hover { transform: translateY(-4px); }
+.proof-stars { color: var(--green); font-size: 14px; margin-bottom: 16px; }
+.proof-card blockquote {
+  font-size: 15px; color: var(--text-mid);
+  line-height: 1.7; margin-bottom: 24px; font-style: italic;
+}
+.proof-author {
+  display: flex; align-items: center; gap: 12px;
+}
+.proof-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-mid), var(--red));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+}
+.proof-author-name { font-size: 14px; font-weight: 700; }
+.proof-author-biz  { font-size: 12px; color: var(--text-dim); }
+
+.proof-metrics {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; margin-top: 48px;
+}
+.proof-metric {
+  background: var(--navy-dk);
+  padding: 36px 24px; text-align: center;
+}
+.proof-metric strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 40px; font-weight: 800;
+  color: var(--green); line-height: 1;
+  margin-bottom: 8px;
+}
+.proof-metric span {
+  font-size: 12px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+/* ── FINAL CTA ── */
+.final-cta {
+  padding: 120px 0;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,230,118,0.07) 0%, transparent 70%);
+}
+.cta-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,230,118,0.2);
+  border-radius: 24px; padding: 80px 60px;
+  text-align: center; position: relative; z-index: 1;
+  max-width: 800px; margin: 0 auto;
+}
+.cta-box::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+.cta-box h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 16px; line-height: 1.1;
+}
+.cta-box h2 span { color: var(--green); }
+.cta-box p {
+  font-size: 17px; color: var(--text-mid);
+  max-width: 520px; margin: 0 auto 40px; line-height: 1.7;
+}
+.cta-form {
+  display: flex; gap: 12px; max-width: 480px; margin: 0 auto 20px;
+}
+.cta-form input {
+  flex: 1; padding: 16px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border); border-radius: 8px;
+  color: var(--white); font-size: 15px; font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.2s;
+}
+.cta-form input::placeholder { color: var(--text-dim); }
+.cta-form input:focus { border-color: rgba(0,230,118,0.5); }
+.cta-form button {
+  background: var(--green); color: var(--navy-dk);
+  font-size: 15px; font-weight: 700;
+  padding: 16px 28px; border-radius: 8px;
+  border: none; cursor: pointer; white-space: nowrap;
+  transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+}
+.cta-form button:hover {
+  background: var(--green-dk);
+  box-shadow: 0 6px 30px rgba(0,230,118,0.35);
+}
+.cta-note {
+  font-size: 12px; color: var(--text-dim);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.cta-note::before { content: '🔒'; font-size: 11px; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  display: flex; justify-content: center;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1140px; padding: 0 40px;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-copy {
+  font-size: 12px; color: var(--text-dim); letter-spacing: 0.5px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 12px; color: var(--text-dim); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ── ANIMATIONS ON SCROLL (simple fade-in) ── */
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 0.7s ease forwards;
+}
+.fade-up.d1 { animation-delay: 0.1s; }
+.fade-up.d2 { animation-delay: 0.2s; }
+.fade-up.d3 { animation-delay: 0.3s; }
+.fade-up.d4 { animation-delay: 0.4s; }
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero-inner, .solution-intro { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { order: -1; }
+  .signal-node-anim { max-width: 280px; margin: 0 auto; }
+  .problem-grid, .services-grid, .proof-grid { grid-template-columns: 1fr; }
+  .proof-metrics { grid-template-columns: repeat(2,1fr); }
+  .container { padding: 0 20px; }
+  .cta-box { padding: 48px 24px; }
+  .cta-form { flex-direction: column; }
+  .hero-stat-bar { gap: 20px; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <!-- Signal Node mini icon -->
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="40" x2="48" y2="24" stroke="#90CAF9" stroke-width="3" stroke-linecap="round"/>
+      <line x1="24" y1="40" x2="48" y2="56" stroke="#90CAF9" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="58" cy="18" r="10" fill="#1565C0"/>
+      <circle cx="58" cy="62" r="10" fill="#1565C0"/>
+      <circle cx="18" cy="40" r="18" fill="#E53935"/>
+    </svg>
+    <span class="nav-logo-text">Core<span>Soft</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#problem">The Problem</a>
+    <a href="#services">Services</a>
+    <a href="#proof">Results</a>
+    <a href="#contact" class="nav-cta">Get Started Free</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-glow-3"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow fade-up">AI-Powered Digital Growth · Hisar, Haryana</div>
+        <h1 class="fade-up d1">
+          Your Business,<br/>
+          Running <span class="accent-green">Smarter.</span><br/>
+          Growing <span class="accent-red">Faster.</span>
+        </h1>
+        <p class="hero-sub fade-up d2">
+          We connect local businesses — restaurants, salons, clinics, and service providers — to AI tools and digital systems that save time, attract more customers, and put growth on autopilot.
+        </p>
+        <div class="hero-ctas fade-up d3">
+          <a href="#contact" class="btn-primary">
+            Get a Free Growth Audit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#services" class="btn-secondary">See What We Do ↓</a>
+        </div>
+        <div class="hero-stat-bar fade-up d4">
+          <div class="hero-stat">
+            <strong>50+</strong>
+            <span>Local Businesses</span>
+          </div>
+          <div class="hero-stat">
+            <strong>10 hrs</strong>
+            <span>Saved Per Week</span>
+          </div>
+          <div class="hero-stat">
+            <strong>3×</strong>
+            <span>More Online Leads</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual: Animated Signal Node Diagram -->
+      <div class="hero-visual">
+        <svg class="signal-node-anim" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hRedGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#EF5350"/>
+              <stop offset="100%" stop-color="#B71C1C"/>
+            </radialGradient>
+            <radialGradient id="hNavyGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#1E6FD9"/>
+              <stop offset="100%" stop-color="#0D47A1"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="8" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glowGreen">
+              <feGaussianBlur stdDeviation="6" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Outer orbit rings -->
+          <circle cx="220" cy="220" r="190" fill="none" stroke="rgba(21,101,192,0.15)" stroke-width="1" stroke-dasharray="8 14"/>
+          <circle cx="220" cy="220" r="145" fill="none" stroke="rgba(21,101,192,0.10)" stroke-width="1" stroke-dasharray="4 10"/>
+
+          <!-- Connector lines -->
+          <line x1="220" y1="220" x2="360" y2="100" stroke="#90CAF9" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/>
+          <line x1="220" y1="220" x2="370" y2="300" stroke="#90CAF9" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/>
+          <line x1="220" y1="220" x2="80"  y2="130" stroke="#90CAF9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
+          <line x1="220" y1="220" x2="70"  y2="320" stroke="#90CAF9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
+          <line x1="220" y1="220" x2="220" y2="60"  stroke="#90CAF9" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4"/>
+
+          <!-- Satellite nodes — navy -->
+          <circle cx="370" cy="100" r="38" fill="url(#hNavyGrad)" filter="url(#glow)"/>
+          <text x="370" y="105" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700" fill="white">AI</text>
+
+          <circle cx="375" cy="305" r="32" fill="url(#hNavyGrad)" filter="url(#glow)"/>
+          <text x="375" y="310" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">SEO</text>
+
+          <circle cx="74" cy="128" r="28" fill="url(#hNavyGrad)" filter="url(#glow)"/>
+          <text x="74" y="133" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700" fill="white">CRM</text>
+
+          <circle cx="65" cy="322" r="24" fill="url(#hNavyGrad)" filter="url(#glow)"/>
+          <text x="65" y="327" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700" fill="white">ADS</text>
+
+          <circle cx="220" cy="56" r="22" fill="url(#hNavyGrad)" filter="url(#glow)"/>
+          <text x="220" y="61" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700" fill="white">WEB</text>
+
+          <!-- Central Red Signal Node -->
+          <circle cx="220" cy="220" r="80" fill="url(#hRedGrad)" filter="url(#glow)"/>
+          <circle cx="220" cy="220" r="60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <circle cx="220" cy="220" r="8" fill="white" fill-opacity="0.9"/>
+
+          <!-- Pulsing ring around red node -->
+          <circle cx="220" cy="220" r="90" fill="none" stroke="rgba(229,57,53,0.25)" stroke-width="1.5">
+            <animate attributeName="r" values="88;105;88" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- CoreSoft label -->
+          <text x="220" y="216" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="13" font-weight="900" fill="white">CoreSoft</text>
+          <text x="220" y="232" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" font-weight="400" fill="rgba(255,255,255,0.7)" letter-spacing="2">SOLUTIONS</text>
+
+          <!-- Green data-pulse dots on lines -->
+          <circle r="4" fill="#00E676" filter="url(#glowGreen)">
+            <animateMotion dur="2.5s" repeatCount="indefinite">
+              <mpath href="#path1"/>
+            </animateMotion>
+          </circle>
+          <path id="path1" d="M220,220 L360,100" fill="none"/>
+
+          <circle r="4" fill="#00E676" filter="url(#glowGreen)">
+            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+              <mpath href="#path2"/>
+            </animateMotion>
+          </circle>
+          <path id="path2" d="M220,220 L370,305" fill="none"/>
+
+          <circle r="3" fill="#90CAF9">
+            <animateMotion dur="2s" repeatCount="indefinite" begin="0.5s">
+              <mpath href="#path3"/>
+            </animateMotion>
+          </circle>
+          <path id="path3" d="M220,220 L74,128" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST BAR ══ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <span class="trust-label">Trusted by local businesses in</span>
+      <div class="trust-items">
+        <span class="trust-item"><span class="dot"></span> Restaurants & Cafés</span>
+        <span class="trust-item"><span class="dot"></span> Salons & Spas</span>
+        <span class="trust-item"><span class="dot"></span> Clinics & Doctors</span>
+        <span class="trust-item"><span class="dot"></span> Retail Stores</span>
+        <span class="trust-item"><span class="dot"></span> Service Businesses</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM SECTION ══ -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-title">Running a Local Business <br/>Shouldn't Feel This Hard</h2>
+    <p class="section-desc">While your competitors are automating and growing online, most local businesses are still stuck doing everything manually — and it's costing them real money.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-icon">⏰</div>
+        <h3>Time Disappears Into Repetitive Tasks</h3>
+        <p>Replying to the same enquiries, manually booking appointments, and chasing follow-ups eats 2–3 hours every single day — time you should spend growing your business.</p>
+        <span class="problem-tag">Avg. 15 hrs/week lost</span>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-icon">🔍</div>
+        <h3>Customers Can't Find You Online</h3>
+        <p>If you're not ranking on Google or showing up on Instagram when people search for your service, you're invisible — and that customer is going straight to your competitor.</p>
+        <span class="problem-tag">73% search before visiting</span>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-icon">📉</div>
+        <h3>No System to Turn Visitors Into Customers</h3>
+        <p>Getting someone to your page is only half the battle. Without a clear follow-up system — WhatsApp automation, lead capture, or retargeting — most visitors just leave and never come back.</p>
+        <span class="problem-tag">68% leads go uncontacted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION SECTION ══ -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="solution-intro">
+      <div>
+        <div class="section-tag">The CoreSoft Way</div>
+        <h2 class="section-title">One Connected System.<br/><span style="color:var(--green)">Everything Working Together.</span></h2>
+        <p class="section-desc" style="margin-bottom:0">We don't sell disconnected tools. We build you a complete digital system — your website, your AI workflows, and your marketing — all connected like the nodes in our Signal Network.</p>
+
+        <div class="solution-list">
+          <div class="solution-item">
+            <div class="solution-item-icon">🤖</div>
+            <div class="solution-item-text">
+              <h4>AI Agents That Work While You Sleep</h4>
+              <p>Automated replies, appointment booking, and lead follow-up — 24/7, zero manual effort from you.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <div class="solution-item-icon">🌐</div>
+            <div class="solution-item-text">
+              <h4>A Website That Actually Converts</h4>
+              <p>Fast, mobile-first, SEO-optimised — built to turn visitors into phone calls and bookings.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <div class="solution-item-icon">📣</div>
+            <div class="solution-item-text">
+              <h4>Social Media That Builds Real Trust</h4>
+              <p>Consistent content, managed for you — so your business stays top-of-mind with local customers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution Visual: Connected node diagram -->
+      <div class="solution-visual">
+        <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:20px;background:rgba(13,71,161,0.08);border:1px solid rgba(144,202,249,0.12);padding:20px;">
+          <defs>
+            <radialGradient id="sRedG" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#EF5350"/><stop offset="100%" stop-color="#B71C1C"/>
+            </radialGradient>
+            <radialGradient id="sNavyG" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#1E6FD9"/><stop offset="100%" stop-color="#0A3578"/>
+            </radialGradient>
+          </defs>
+          <!-- Connection lines -->
+          <line x1="190" y1="210" x2="190" y2="80"  stroke="#90CAF9" stroke-width="2" stroke-opacity="0.6" stroke-dasharray="4 6"/>
+          <line x1="190" y1="210" x2="80"  y2="300" stroke="#90CAF9" stroke-width="2" stroke-opacity="0.6" stroke-dasharray="4 6"/>
+          <line x1="190" y1="210" x2="300" y2="300" stroke="#90CAF9" stroke-width="2" stroke-opacity="0.6" stroke-dasharray="4 6"/>
+          <line x1="190" y1="210" x2="80"  y2="120" stroke="#90CAF9" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4 6"/>
+          <line x1="190" y1="210" x2="300" y2="120" stroke="#90CAF9" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4 6"/>
+
+          <!-- Outer nodes -->
+          <circle cx="190" cy="68"  r="42" fill="url(#sNavyG)"/>
+          <text x="190" y="62" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">AI</text>
+          <text x="190" y="76" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">Agents</text>
+
+          <circle cx="78"  cy="308" r="38" fill="url(#sNavyG)"/>
+          <text x="78" y="303" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">Social</text>
+          <text x="78" y="317" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">Media</text>
+
+          <circle cx="302" cy="308" r="38" fill="url(#sNavyG)"/>
+          <text x="302" y="303" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">Web +</text>
+          <text x="302" y="317" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700" fill="white">SEO</text>
+
+          <circle cx="78"  cy="116" r="28" fill="rgba(13,71,161,0.5)" stroke="rgba(144,202,249,0.3)" stroke-width="1"/>
+          <text x="78" y="120" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">WhatsApp</text>
+
+          <circle cx="302" cy="116" r="28" fill="rgba(13,71,161,0.5)" stroke="rgba(144,202,249,0.3)" stroke-width="1"/>
+          <text x="302" y="120" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">Google Ads</text>
+
+          <!-- Central node -->
+          <circle cx="190" cy="210" r="62" fill="url(#sRedG)"/>
+          <text x="190" y="205" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="13" font-weight="900" fill="white">CoreSoft</text>
+          <text x="190" y="222" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(255,255,255,0.6)" letter-spacing="2">SIGNAL HUB</text>
+
+          <!-- Animated pulses -->
+          <circle cx="190" cy="210" r="65" fill="none" stroke="rgba(229,57,53,0.3)" stroke-width="1">
+            <animate attributeName="r" values="65;82;65" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES 3-COL ══ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-tag">Our Services</div>
+    <h2 class="section-title">Three Nodes. One <span style="color:var(--green)">Powerful Network.</span></h2>
+    <p class="section-desc">Each service is designed to work standalone — or connect together into a complete growth system for your business.</p>
+
+    <div class="services-grid">
+
+      <!-- Card 1: AI Agents & SaaS Workflows -->
+      <div class="service-card">
+        <div class="service-card-icon">🤖</div>
+        <div class="tagline">Node 01 · Automation</div>
+        <h3>AI Agents & SaaS Workflows</h3>
+        <p>Stop answering the same questions manually. We build AI-powered systems that handle customer enquiries, appointment bookings, and follow-up messages — automatically, 24 hours a day.</p>
+        <div class="service-features">
+          <div class="service-feature">WhatsApp & Instagram auto-replies</div>
+          <div class="service-feature">Appointment booking without the calls</div>
+          <div class="service-feature">Lead capture & CRM integration</div>
+          <div class="service-feature">Save 10+ hours every week</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Digital Media Management -->
+      <div class="service-card">
+        <div class="service-card-icon">📣</div>
+        <div class="tagline">Node 02 · Visibility</div>
+        <h3>Digital Media Management</h3>
+        <p>Consistent social media presence, strategic content, and paid campaigns — handled for you. We make sure your business is always visible to the right local customers at the right time.</p>
+        <div class="service-features">
+          <div class="service-feature">Instagram & Facebook management</div>
+          <div class="service-feature">Reels, graphics & caption writing</div>
+          <div class="service-feature">Google My Business optimisation</div>
+          <div class="service-feature">Paid ads with real ROI tracking</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Websites & SEO -->
+      <div class="service-card">
+        <div class="service-card-icon">🌐</div>
+        <div class="tagline">Node 03 · Conversion</div>
+        <h3>Websites & Local SEO</h3>
+        <p>Your website is your 24/7 salesperson. We build fast, mobile-first websites that rank on Google and turn visitors into paying customers — delivered in as little as 7 days.</p>
+        <div class="service-features">
+          <div class="service-feature">Delivered in 7 days</div>
+          <div class="service-feature">Rank on Google for local searches</div>
+          <div class="service-feature">WhatsApp & call button integration</div>
+          <div class="service-feature">1-year free maintenance included</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOCIAL PROOF ══ -->
+<section class="proof" id="proof">
+  <div class="container">
+    <div class="section-tag">Real Results</div>
+    <h2 class="section-title">Local Businesses.<br/>Real <span style="color:var(--green)">Numbers.</span></h2>
+    <p class="section-desc">We work exclusively with local businesses in Haryana and beyond. Here's what happens when the system clicks into place.</p>
+
+    <div class="proof-metrics">
+      <div class="proof-metric">
+        <strong>3×</strong>
+        <span>More Online Enquiries</span>
+      </div>
+      <div class="proof-metric">
+        <strong>10h+</strong>
+        <span>Saved Per Week</span>
+      </div>
+      <div class="proof-metric">
+        <strong>7 Days</strong>
+        <span>Website Delivery</span>
+      </div>
+      <div class="proof-metric">
+        <strong>50+</strong>
+        <span>Businesses Served</span>
+      </div>
+    </div>
+
+    <div class="proof-grid" style="margin-top:40px;">
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <blockquote>"Before CoreSoft, I was spending 2 hours a day just replying to WhatsApp enquiries. Now it's all automatic and I get 3× more bookings."</blockquote>
+        <div class="proof-author">
+          <div class="proof-avatar">RK</div>
+          <div>
+            <div class="proof-author-name">Rajesh K.</div>
+            <div class="proof-author-biz">Restaurant Owner, Hisar</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <blockquote>"Our Instagram went from 200 to 2,400 followers in 4 months. We're now fully booked every weekend. Worth every rupee."</blockquote>
+        <div class="proof-author">
+          <div class="proof-avatar">PS</div>
+          <div>
+            <div class="proof-author-name">Priya S.</div>
+            <div class="proof-author-biz">Salon Owner, Hisar</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <blockquote>"My clinic now ranks #1 on Google for dental services in our area. New patient walk-ins have doubled since the website went live."</blockquote>
+        <div class="proof-author">
+          <div class="proof-avatar">DM</div>
+          <div>
+            <div class="proof-author-name">Dr. Mehta</div>
+            <div class="proof-author-biz">Dental Clinic, Haryana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="cta-box">
+      <!-- Signal Node mini decoration -->
+      <div style="display:flex;justify-content:center;margin-bottom:28px;">
+        <svg width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <line x1="24" y1="40" x2="48" y2="24" stroke="#90CAF9" stroke-width="3" stroke-linecap="round"/>
+          <line x1="24" y1="40" x2="48" y2="56" stroke="#90CAF9" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="58" cy="18" r="10" fill="#1565C0"/>
+          <circle cx="58" cy="62" r="10" fill="#1565C0"/>
+          <circle cx="18" cy="40" r="18" fill="#E53935"/>
+          <circle cx="18" cy="40" r="18" fill="none" stroke="rgba(229,57,53,0.4)" stroke-width="2">
+            <animate attributeName="r" values="18;26;18" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:16px;">Free · No Commitment · 30 Minutes</div>
+      <h2>Ready to Connect Your Business<br/>to <span>Smarter Growth?</span></h2>
+      <p>Book a free 30-minute Growth Audit. We'll review your current digital presence and show you exactly where you're leaving money on the table — and how to fix it.</p>
+      <div class="cta-form">
+        <input type="text" placeholder="Your WhatsApp number or email"/>
+        <button type="button">Book Free Audit →</button>
+      </div>
+      <p class="cta-note">No spam. No pressure. Just a straight conversation about your growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2025 CoreSoft Solutions · Hisar, Haryana, India</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="https://wa.me/91XXXXXXXXXX">WhatsApp Us</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
