@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3993374084130196');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3993374084130196&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CoreSoft Solutions — AI & Digital Growth for Local Businesses</title>
@@ -631,7 +647,7 @@ footer {
           We connect local businesses — restaurants, salons, clinics, and service providers — to AI tools and digital systems that save time, attract more customers, and put growth on autopilot.
         </p>
         <div class="hero-ctas fade-up d3">
-          <a href="https://wa.me/918168194134?text=Hi+CoreSoft+I+would+like+a+free+Growth+Audit+for+my+business" class="btn-primary" target="_blank" rel="noopener">
+          <a href="https://wa.me/918168194134?text=Hi+CoreSoft+I+would+like+a+free+Growth+Audit+for+my+business" onclick="fbq('track', 'Lead')">
             Get a Free Growth Audit
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1036,7 +1052,7 @@ footer {
     <div class="footer-links">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms</a>
-      <a href="https://wa.me/918168194134?text=Hi+CoreSoft+I+would+like+to+know+more+about+your+services" target="_blank" rel="noopener">WhatsApp Us</a>
+      <a href="https://wa.me/918168194134?text=Hi+CoreSoft+I+would+like+to+know+more+about+your+services" onclick="fbq('track', 'Lead')target="_blank" rel="noopener">WhatsApp Us</a>
     </div>
   </div>
 </footer>
